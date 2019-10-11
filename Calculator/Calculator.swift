@@ -37,7 +37,7 @@ class Calculator: NSObject {
         
         "±": Operation.UnaryOp({ -$0}),
         
-        "%": Operation.UnaryOp({ 0.01*$0 }),
+        "%": Operation.UnaryOp({ 0.01 * $0 }),
     ]
     
     
