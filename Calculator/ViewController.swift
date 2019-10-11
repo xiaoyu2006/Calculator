@@ -42,7 +42,6 @@ class ViewController: UIViewController {
                 inTypingMiddle = true
             }
         }
-        
     }
     
     @IBAction func operButtonTouched(_ sender: UIButton){
@@ -55,7 +54,6 @@ class ViewController: UIViewController {
             inTypingMiddle = false
         }
     }
-    
-    
+
 }
 

@@ -37,15 +37,11 @@ class Calculator: NSObject {
         
         "±": Operation.UnaryOp({ -$0}),
         
-        "√": Operation.UnaryOp({sqrt($0)}),
-        
-        "π": Operation.Constant(Double.pi)
-        
+        "%": Operation.UnaryOp({ 0.01*$0 }),
     ]
     
     
     func performOperation(operation: String, operand: Double)  -> Double? {
-        
         if let op = operations[operation]{
             switch  op {
             case .BinaryOp(let function):
