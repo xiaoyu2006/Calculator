@@ -265,9 +265,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Li6-M0-mZJ">
+                                <rect key="frame" x="20" y="94.333333333333329" width="31" height="30"/>
+                                <state key="normal" title="Frac"/>
+                                <connections>
+                                    <action selector="fracBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hMf-KU-c9R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Li6-M0-mZJ" firstAttribute="centerY" secondItem="b5w-ZW-lH8" secondAttribute="centerY" id="06p-5P-gPT"/>
+                            <constraint firstItem="Li6-M0-mZJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="58B-J6-Fdb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q31-0o-OjP" secondAttribute="trailing" constant="10" id="7qW-LG-hyn"/>
                             <constraint firstItem="q31-0o-OjP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="G5I-YT-heF"/>
                             <constraint firstItem="q31-0o-OjP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="H1O-8B-yRh"/>

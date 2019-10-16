@@ -11,10 +11,10 @@ import UIKit
 class Calculator: NSObject {
     
     enum Operation {
-        case UnaryOp((Double) ->Double)
-        case BinaryOp((Double, Double) -> Double)
+        case UnaryOp((Fraction) ->Fraction)
+        case BinaryOp((Fraction, Fraction) -> Fraction)
         case EqualsOp
-        case Constant(Double)
+        case Constant(Fraction)
     }
     
     var operations  = [
@@ -23,7 +23,7 @@ class Calculator: NSObject {
             return op1+op2
         }),
         
-        "−": Operation.BinaryOp({(op1: Double, op2: Double) -> Double in
+        "−": Operation.BinaryOp({(op1: Fraction, op2: Fraction) -> Fraction in
             return op1-op2
         }),
         
@@ -33,24 +33,24 @@ class Calculator: NSObject {
         
         "=": Operation.EqualsOp,
         
-        "C": Operation.UnaryOp({_ in return 0}),
+        "C": Operation.UnaryOp({_ in return Fraction()}),
         
-        "±": Operation.UnaryOp({ -$0}),
+        "±": Operation.UnaryOp({ Fraction() - $0}),
         
-        "%": Operation.UnaryOp({ 0.01 * $0 }),
+        "%": Operation.UnaryOp({ Fraction(fromString: "0.01") * $0 }),
     ]
     
     
-    func performOperation(operation: String, operand: Double)  -> Double? {
+    func performOperation(operation: String, operand: Fraction)  -> Fraction? {
         if let op = operations[operation]{
-            switch  op {
+            switch op {
             case .BinaryOp(let function):
                 pendingOp = Intermediate(firstOp: operand, waitingOperation: function)
                 return nil
             case .UnaryOp(let function):
                 return function(operand)
             case .EqualsOp:
-                if let theOperation =  pendingOp{
+                if let theOperation =  pendingOp {
                     return theOperation.waitingOperation(theOperation.firstOp, operand)
                 }
             case .Constant(let value):
@@ -63,10 +63,9 @@ class Calculator: NSObject {
     var pendingOp: Intermediate? = nil
     
     
-    struct Intermediate{
-        var firstOp: Double
-        var waitingOperation : (Double, Double) ->Double
+    struct Intermediate {
+        var firstOp: Fraction
+        var waitingOperation : (Fraction, Fraction) -> Fraction
     }
-    
 
 }

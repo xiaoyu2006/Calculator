@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     var calculator = Calculator()
     
+    var fraction = Fraction()
+    
     var inTypingMiddle = false
     var doted = false
     
@@ -32,8 +34,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func digitalButtonTouched(_ sender: UIButton){
-        
+    @IBAction func digitalButtonTouched(_ sender: UIButton) {
         if let currentDigit = sender.currentTitle {
             if inTypingMiddle{
                 if currentDigit == "." {
@@ -43,22 +44,29 @@ class ViewController: UIViewController {
                     doted = true
                 }
                 digitOnDisplay = digitOnDisplay + currentDigit
-            }
-            else{
+            } else{
                 digitOnDisplay = currentDigit
                 inTypingMiddle = true
                 doted = false
             }
         }
     }
+    @IBAction func fracBtnPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Fraction:", message: fraction.toFrac(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func operButtonTouched(_ sender: UIButton){
-        
         if let op = sender.currentTitle {
-            if let result = calculator.performOperation(operation: op, operand: Double(digitOnDisplay)!){
-                digitOnDisplay = String(result)
+            if inTypingMiddle {
+                fraction = Fraction(fromString: digitOnDisplay)
             }
-            
+            print(digitOnDisplay)
+            if let result = calculator.performOperation(operation: op, operand: fraction) {
+                digitOnDisplay = result.toString()
+                fraction = result
+            }
             inTypingMiddle = false
         }
     }
