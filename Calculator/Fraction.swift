@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 let chr0: UInt8 = Character("0").asciiValue!
 
 // Fraction: a / b

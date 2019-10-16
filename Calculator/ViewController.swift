@@ -62,7 +62,7 @@ class ViewController: UIViewController {
             if inTypingMiddle {
                 fraction = Fraction(fromString: digitOnDisplay)
             }
-            print(digitOnDisplay)
+            // print(digitOnDisplay)
             if let result = calculator.performOperation(operation: op, operand: fraction) {
                 digitOnDisplay = result.toString()
                 fraction = result
