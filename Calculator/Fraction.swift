@@ -91,6 +91,11 @@ class Fraction {
             }
             return neg + "INF"
         }
+        // If a MOD b = 0
+        if Double(a / b) == Double(a) / Double(b) {
+            result += String(a / b)
+            return result
+        }
         result += String(Double(a) / Double(b))
         return result
     }
