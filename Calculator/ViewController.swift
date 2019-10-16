@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var calculator = Calculator()
     
     var inTypingMiddle = false
+    var doted = false
     
     var digitOnDisplay: String{
         get{
@@ -35,11 +36,18 @@ class ViewController: UIViewController {
         
         if let currentDigit = sender.currentTitle {
             if inTypingMiddle{
+                if currentDigit == "." {
+                    if doted {
+                        return
+                    }
+                    doted = true
+                }
                 digitOnDisplay = digitOnDisplay + currentDigit
             }
             else{
                 digitOnDisplay = currentDigit
                 inTypingMiddle = true
+                doted = false
             }
         }
     }
